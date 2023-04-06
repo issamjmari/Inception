@@ -1,7 +1,0 @@
-version: "3"
-services:
-  nginx-service:
-    container_name: nginx-container
-    build: .
-    ports:
-      - "443:443"
