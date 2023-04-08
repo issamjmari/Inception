@@ -1,19 +1,38 @@
 version: "3"
 services:
   nginx-service:
+    depends_on:
+      - wordpress-service
     container_name: nginx-container
     build: ./requirements/nginx/
+    volumes:
+      - wpVolume:/var/www/html
+    networks:
+      - net
     ports:
       - "443:443"
   wordpress-service:
+    depends_on:
+      - maria-db
     container_name: wordpress-container
     build: ./requirements/wordpress/
     volumes:
-      - wpVolume:/var/lib/mysql
-    depends_on:
-      - maria-db
+      - wpVolume:/var/www/html
+    ports:
+      - "9000:9000"
+    networks:
+      - net
   maria-db:
     container_name: mariadb-cont
     build: ./requirements/mariadb/
+    volumes:
+      - mysql:/var/lib/mysql
     ports:
       - "3306:3306"
+    networks:
+      - net
+volumes:
+  wpVolume:
+  mysql:
+networks:
+  net:
