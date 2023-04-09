@@ -7,6 +7,7 @@ services:
     build: ./requirements/nginx/
     volumes:
       - wpVolume:/var/www/html
+    restart: on-failure
     networks:
       - net
     ports:
@@ -18,6 +19,7 @@ services:
     build: ./requirements/wordpress/
     volumes:
       - wpVolume:/var/www/html
+    restart: on-failure
     ports:
       - "9000:9000"
     networks:
@@ -27,6 +29,7 @@ services:
     build: ./requirements/mariadb/
     volumes:
       - mysql:/var/lib/mysql
+    restart: on-failure
     ports:
       - "3306:3306"
     networks:

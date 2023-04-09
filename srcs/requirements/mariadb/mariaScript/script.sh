@@ -17,4 +17,4 @@ echo "GRANT ALL PRIVILEGES ON wp_database.* TO 'issam'@'%' ;" >> db1.sql
 echo "FLUSH PRIVILEGES;" >> db1.sql
 
 mysql < db1.sql
-tail -f
+exec mysqld_safe
