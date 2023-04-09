@@ -11,13 +11,13 @@ wp core download --allow-root
 chown www-data:www-data * */*
 
 mv ./wp-config-sample.php ./wp-config.php
-# sed -i -r "s/'database_name_here'/'mariadb'/1" wp-config.php
-# sed -i -r "s/'username_here'/'issam'/1" wp-config.php
-# sed -i -r "s/'password_here'/'issam123'/1" wp-config.php
-# sed -i -r "s/localhost/mariadb/1"    wp-config.php
+sed -i -r "s/'database_name_here'/'wp_database'/1" wp-config.php
+sed -i -r "s/'username_here'/'issam'/1" wp-config.php
+sed -i -r "s/'password_here'/'1234'/1" wp-config.php
+sed -i -r "s/localhost/maria-db/1"    wp-config.php
 
 wp core install --url="localhost" --title="Example" --admin_user="admin" --admin_password="password" --admin_email="admin@example.com" --allow-root
-wp user create $WP_USR $WP_EMAIL --role=author --user_pass=$WP_PWD --allow-root
+# wp user create $WP_USR $WP_EMAIL --role=author --user_pass=$WP_PWD --allow-root
 
 sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
 mkdir /run/php
