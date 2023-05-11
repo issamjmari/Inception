@@ -5,6 +5,8 @@ services:
       - wordpress-service
     container_name: nginx-container
     build: ./requirements/nginx/
+    env_file:
+      - .env
     volumes:
       - wpVolume:/var/www/html
     restart: on-failure
@@ -17,6 +19,8 @@ services:
       - maria-db
     container_name: wordpress-container
     build: ./requirements/wordpress/
+    env_file:
+      - .env
     volumes:
       - wpVolume:/var/www/html
     restart: on-failure
@@ -27,6 +31,8 @@ services:
   maria-db:
     container_name: mariadb-cont
     build: ./requirements/mariadb/
+    env_file:
+      - .env
     volumes:
       - mysql:/var/lib/mysql
     restart: on-failure
