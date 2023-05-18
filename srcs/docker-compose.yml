@@ -42,6 +42,16 @@ services:
       - net
 volumes:
   wpVolume:
+    driver: local
+    driver_opts:
+        type: none
+        o: bind
+        device: /home/ijmari/data/wpVolume
   mysql:
+    driver: local
+    driver_opts:
+        type: none
+        o: bind
+        device: /home/ijmari/data/mysql
 networks:
   net:
